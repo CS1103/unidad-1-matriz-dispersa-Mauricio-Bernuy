@@ -5,9 +5,17 @@
 #include<string>
 using namespace std;
 
+void SparseMatrix::setSize() {
+	cout << "Input the x, y dimensions of the Sparse Matrix: "<<endl;
+	cin >> sizeX >> sizeY;
 
-void SparseMatrix::SetMatrix(int nelements)
+};
+
+void SparseMatrix::setMatrix()
 {
+	int nelements;
+	cout << "Number of values to set: ";
+	cin >> nelements;
 
 	for (int i = 0; i < nelements;) {
 		int v, x, y;
