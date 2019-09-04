@@ -34,5 +34,8 @@ public:
 	int Transposicion(); //Swappear las coordenadas x, y
 
 	int getSparsity(); // Devuelve la dispersión de la matrix
+	
+	int getValues(); //Devuelve los valores de la matriz como una lista
+
 };
 #endif

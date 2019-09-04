@@ -44,10 +44,7 @@ void SparseMatrix::SetMatrix(int nelements)
 		cout << "values validated" << endl << "\n" << endl;
 		i++;
 	}
-	cout << "SetMatrix Finished. Values in vector values= ";
-	for (int i = 0; i < nelements; i++) {
-		cout << SparseMatrix::values[i] << ", ";
-	}
+
 };
 
 
@@ -64,7 +61,22 @@ int SparseMatrix::Multiplicacion() {
 };
 
 int SparseMatrix::MultiEscalar() {
-	return 0;
+
+	int Scalar;
+	cout << "Input scalar to multiply vector: ";
+	cin >> Scalar;
+
+	if (Scalar == 0) {
+		cout << "Multiplying by 0 erases the Sparse Matrix, the operation will not proceed"<<endl;
+		return 0;
+	}
+
+	else {
+		for (int i = 0; i < values.size(); i++) {
+			values[i] = values[i] * Scalar;
+		}
+		cout << "Scalar multiplication sucessful" << endl;
+	}
 };
 
 int SparseMatrix::Transposicion() {
@@ -75,4 +87,11 @@ int SparseMatrix::getSparsity() {
 	return 0;
 };
 
-
+int SparseMatrix::getValues() {
+	cout << "values in vector values= ";
+	for (int i = 0; i < values.size(); i++) {
+		cout << values[i] << ", ";	
+	}
+	cout << endl;
+	return 0;
+};
