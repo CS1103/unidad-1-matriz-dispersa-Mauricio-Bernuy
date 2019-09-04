@@ -1,33 +1,85 @@
+
+#ifndef SPARSEMATRIX_
+#define SPARSEMATRIX_
 #include "SparseMatrix.h"
 #include<iostream>
-#include<vector>
-#include<string>
+
+
 
 using namespace std;
 
-class SparseMatrix{
-public:
-	int sizeX;
-	int sizeY;
-	vector<int> values;
-	vector<int> RowX;
-	vector<int> ColumnY;
-	
 
-// constructor
-	SparseMatrix(int sizeX, int sizeY);
 
-// methods
-	int SetMatrix(); //Función para inputear los datos a la matriz (implementar una opción para terminar)
+void SparseMatrix::SetMatrix(int nelements)
+{
 
-	int Suma(); //Suma dos matrices y genera una nueva con los datos sumados
+	for (int i = 0; i < nelements;) {
+		int v, x, y;
+		int cont;
+		cout << "input value followed by x, y coordinates: " << endl;
+		cin >> v;
 
-	int Resta(); //Resta dos matrices y genera una nueva con los datos restados
+		do {
+			cont = 0; cin >> x >> y;
 
-	int Multiplicacion(); //Multiplica dos matrices y genera una nueva con el resultado (identificar los casos con valores indefinidos)
+			if (0 > sizeX || x > 10 || 0 > y || y > SparseMatrix::sizeY) {
+				cont++;
+				cout << "coordinates out of bounds, reinput another coordinate" << endl;
 
-	int MultiEscalar(); //Multiplica los valores de la matriz por un valor inputeado 
 
-	int Transposicion(); //Swappear las coordenadas x, y
+			}
+			else {
+				for (int u = 0; u < SparseMatrix::values.size(); u++) {
+					cout << "lol2";
+					if (SparseMatrix::RowX[u] == x) {
+						if (SparseMatrix::ColumnY[u] == y) {
+							cont++;
+							cout << "coordinates already filled, reinput another coordinate" << endl;
+							u--;
+							break;
+						}
+					}
 
+				}
+			}
+		} while (cont == !0);
+
+
+		SparseMatrix::values.push_back(v); SparseMatrix::RowX.push_back(x); SparseMatrix::ColumnY.push_back(y);
+		cout << "values validated" << endl << "\n" << endl;
+		i++;
+	}
+	cout << "SetMatrix Finished. Values in vector values= ";
+	for (int i = 0; i < nelements; i++) {
+		cout << SparseMatrix::values[i] << ", ";
+	}
 };
+
+
+int SparseMatrix::Suma() {
+	return 0;
+};
+
+int SparseMatrix::Resta() {
+	return 0;
+};
+
+int SparseMatrix::Multiplicacion() {
+	return 0;
+};
+
+int SparseMatrix::MultiEscalar() {
+	return 0;
+};
+
+int SparseMatrix::Transposicion() {
+	return 0;
+};
+
+int SparseMatrix::getSparsity() {
+	return 0;
+};
+
+
+
+#endif
