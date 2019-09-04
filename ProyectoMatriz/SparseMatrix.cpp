@@ -1,13 +1,9 @@
 
-#ifndef SPARSEMATRIX_
-#define SPARSEMATRIX_
 #include "SparseMatrix.h"
-#include<iostream>
-
-
-
+#include <iostream>
+#include<vector>
+#include<string>
 using namespace std;
-
 
 
 void SparseMatrix::SetMatrix(int nelements)
@@ -22,7 +18,7 @@ void SparseMatrix::SetMatrix(int nelements)
 		do {
 			cont = 0; cin >> x >> y;
 
-			if (0 > sizeX || x > 10 || 0 > y || y > SparseMatrix::sizeY) {
+			if (0 > sizeX || x > 10 || 0 > y || y > sizeY) {
 				cont++;
 				cout << "coordinates out of bounds, reinput another coordinate" << endl;
 
@@ -30,7 +26,6 @@ void SparseMatrix::SetMatrix(int nelements)
 			}
 			else {
 				for (int u = 0; u < SparseMatrix::values.size(); u++) {
-					cout << "lol2";
 					if (SparseMatrix::RowX[u] == x) {
 						if (SparseMatrix::ColumnY[u] == y) {
 							cont++;
@@ -81,5 +76,3 @@ int SparseMatrix::getSparsity() {
 };
 
 
-
-#endif

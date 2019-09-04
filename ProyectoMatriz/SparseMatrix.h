@@ -1,8 +1,9 @@
 
-#include<iostream>
+#ifndef SPARSEMATRIX_
+#define SPARSEMATRIX_
+#include <iostream>
 #include<vector>
 #include<string>
-
 using namespace std;
 
 class SparseMatrix {
@@ -16,12 +17,10 @@ public:
 
 
 	// constructor
-	SparseMatrix();
-	SparseMatrix(int sizeX, int sizeY);
+
 
 	// methods
-
-
+	
 	void SetMatrix(int nelements); //Función para inputear los datos a la matriz 
 
 	int Suma(); //Suma dos matrices y genera una nueva con los datos sumados
@@ -36,3 +35,4 @@ public:
 
 	int getSparsity(); // Devuelve la dispersión de la matrix
 };
+#endif

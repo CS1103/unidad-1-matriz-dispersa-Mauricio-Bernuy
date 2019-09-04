@@ -1,11 +1,14 @@
 #include<iostream>
 #include<vector>
 #include<string>
-#include "SparseMatrix.cpp"
+#include "SparseMatrix.h"
+
 using namespace std;
 
 
 int main() {
-	SparseMatrix m1(9,9);
+	SparseMatrix m1;
+	m1.sizeX = 10;
+	m1.sizeY = 10;
 	m1.SetMatrix(3);
 };
