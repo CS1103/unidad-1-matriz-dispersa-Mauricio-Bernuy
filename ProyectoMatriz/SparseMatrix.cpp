@@ -235,6 +235,48 @@ void SparseMatrix::Resta(SparseMatrix OtherMatrix) {
 };
 
 void  SparseMatrix::Multiplicacion(SparseMatrix OtherMatrix) {
+	SparseMatrix multiplicacion;
+	if (sizeY = OtherMatrix.sizeX) {
+
+		for (int i = 0; i < values.size(); i++) {
+			
+			bool checker = true;
+
+			for (int u = 0; u < OtherMatrix.values.size(); u++) {
+				if (ColumnY[i] == OtherMatrix.RowX[u]) {
+					//cout << "found inverse" << endl;
+					if (RowX[i] == OtherMatrix.ColumnY[u]) {
+						//cout << "found in columny" << endl;
+						//cout << "Match Found" << endl;
+
+						checker = false;
+					}
+					//cout << "exited columny, in if rowx" << endl;
+				}
+				//cout << checker << endl;
+
+				if ((u + 1) == OtherMatrix.values.size()) {
+					if (checker == true) {
+						//cout << "gotta pushback";
+						multiplicacion.values.push_back(values[i]);
+						multiplicacion.RowX.push_back(RowX[i]);
+						multiplicacion.ColumnY.push_back(ColumnY[i]);
+						//cout << "pushed values";
+					}
+				}
+
+				//cout << "exited rowx, in for U" << endl;
+
+
+			}
+			//cout << "exited for U, in for I" << endl;
+
+		}
+		
+	}
+	else {
+		cout << "Matrix size incompatible"
+	}
 
 };
 

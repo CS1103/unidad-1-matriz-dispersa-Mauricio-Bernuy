@@ -29,7 +29,7 @@ public:
 
 	void Resta(SparseMatrix OtherMatrix); //Resta dos matrices y genera una nueva con los datos restados (DONE)
 
-	void Multiplicacion(SparseMatrix OtherMatrix); //Multiplica dos matrices y genera una nueva con el resultado (identificar los casos con valores indefinidos)
+	void Multiplicacion(SparseMatrix OtherMatrix); //Multiplica dos matrices y genera una nueva con el resultado (identificar los casos con valores indefinidos) [NOT DONE]
 
 	void MultiEscalar(); //Multiplica los valores de la matriz por un valor inputeado (DONE)
 
