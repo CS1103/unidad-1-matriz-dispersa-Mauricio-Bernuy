@@ -16,7 +16,6 @@ public:
 	vector<int> RowX;
 	vector<int> ColumnY;
 
-
 	// methods
 	
 	void setSize(); //funcion para inputear el tamaño de la matriz (DONE)
