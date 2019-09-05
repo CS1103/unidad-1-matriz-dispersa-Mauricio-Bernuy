@@ -3,6 +3,7 @@
 #include <iostream>
 #include<vector>
 #include<string>
+
 using namespace std;
 
 void SparseMatrix::setSize() {
@@ -11,7 +12,7 @@ void SparseMatrix::setSize() {
 
 };
 
-void SparseMatrix::setMatrix()
+void SparseMatrix::setMatrix()	
 {
 	int nelements;
 	cout << "Number of values to set: ";
@@ -26,7 +27,7 @@ void SparseMatrix::setMatrix()
 		do {
 			cont = 0; cin >> x >> y;
 
-			if (0 > sizeX || x > 10 || 0 > y || y > sizeY) {
+			if (0 > x || x > sizeX || 0 > y || y > sizeY) {
 				cont++;
 				cout << "coordinates out of bounds, reinput another coordinate" << endl;
 
@@ -56,9 +57,38 @@ void SparseMatrix::setMatrix()
 };
 
 
-int SparseMatrix::Suma() {
+int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
+	if (sizeX <= OtherMatrix.sizeX) {
+		sizeX = OtherMatrix.sizeX;
+	}
+	if (sizeY <= OtherMatrix.sizeY) {
+		sizeY = OtherMatrix.sizeY;
+	}
+
+	for (int i = 0; i < RowX.size(); i++) {
+		for (int u = 0; u < OtherMatrix.values.size(); u++) {
+			if (RowX[i] == OtherMatrix.RowX[u]) {
+				if (ColumnY[i] == OtherMatrix.ColumnY[u]) {
+					cout << "Match Found" << endl;
+					values[i] = +OtherMatrix.values[u];
+					cout << values[i];
+				}
+				else {
+					break;
+				}
+			}
+			else {
+				values.push_back(OtherMatrix.values[u]);
+				RowX.push_back(OtherMatrix.RowX[u]);
+				ColumnY.push_back(OtherMatrix.ColumnY[u]);
+
+			}
+		
+		}
+	}
 	return 0;
 };
+
 
 int SparseMatrix::Resta() {
 	return 0;

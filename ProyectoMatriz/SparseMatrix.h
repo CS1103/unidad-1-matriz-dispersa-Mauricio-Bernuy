@@ -21,11 +21,11 @@ public:
 
 	// methods
 	
-	void setSize(); //funcion para inputear el tamaño de la matriz
+	void setSize(); //funcion para inputear el tamaño de la matriz (DONE)
 
 	void setMatrix(); //Función para inputear los datos a la matriz (DONE)
 
-	int Suma(); //Suma dos matrices y genera una nueva con los datos sumados
+	int Suma(SparseMatrix OtherMatrix); //Suma dos matrices devuelve la primera con los datos sumados
 
 	int Resta(); //Resta dos matrices y genera una nueva con los datos restados
 
