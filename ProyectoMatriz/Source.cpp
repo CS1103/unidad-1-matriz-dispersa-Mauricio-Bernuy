@@ -13,8 +13,6 @@ int main() {
 	m2.setSize();
 	m1.setMatrix();
 	m2.setMatrix();
-	m1.Suma(m2);
-	m1.getValues();
-	
+	m1.Suma(m2);	
 
 };

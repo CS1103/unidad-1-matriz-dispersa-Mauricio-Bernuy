@@ -25,7 +25,7 @@ public:
 
 	void setMatrix(); //Función para inputear los datos a la matriz (DONE)
 
-	int Suma(SparseMatrix OtherMatrix); //Suma dos matrices devuelve la primera con los datos sumados
+	int Suma(SparseMatrix OtherMatrix); //Suma dos matrices y devuelve una nueva con los datos sumados(done)
 
 	int Resta(); //Resta dos matrices y genera una nueva con los datos restados
 
@@ -39,5 +39,6 @@ public:
 	
 	int getValues(); //Devuelve los valores de la matriz como una lista (DONE)
 
+	int getCoordinates(); //Devuelve las coordenadas como una lista
 };
 #endif

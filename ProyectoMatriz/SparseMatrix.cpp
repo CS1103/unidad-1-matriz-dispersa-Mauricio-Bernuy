@@ -27,7 +27,7 @@ void SparseMatrix::setMatrix()
 		do {
 			cont = 0; cin >> x >> y;
 			x -= 1; y -= 1;
-			if (0 > x || x > sizeX || 0 > y || y > sizeY) {
+			if (0 > x || x >= sizeX || 0 > y || y >= sizeY) {
 				cont++;
 				cout << "coordinates out of bounds, reinput another coordinate" << endl;
 
@@ -58,31 +58,91 @@ void SparseMatrix::setMatrix()
 
 
 int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
+	SparseMatrix suma;
 	if (sizeX <= OtherMatrix.sizeX) {
-		sizeX = OtherMatrix.sizeX;
+		suma.sizeX = OtherMatrix.sizeX;
 	}
-	if (sizeY <= OtherMatrix.sizeY) {
-		sizeY = OtherMatrix.sizeY;
-	}
+	else { suma.sizeX = sizeX; };
 
+	if (suma.sizeY <= OtherMatrix.sizeY) {
+		suma.sizeY = OtherMatrix.sizeY;
+	}
+	else { suma.sizeY = sizeY; };
+
+
+	cout << "starting first pass" << endl;
 	for (int i = 0; i < values.size(); i++) {
+		bool checker = true;
 		for (int u = 0; u < OtherMatrix.values.size(); u++) {
 			if (RowX[i] == OtherMatrix.RowX[u]) {
+				//cout << "found in rowx" << endl;
 				if (ColumnY[i] == OtherMatrix.ColumnY[u]) {
-					cout << "Match Found" << endl;
-					values[i] += OtherMatrix.values[u];
-					cout << values[i];
+					//cout << "found in columny" << endl;
+					//cout << "Match Found" << endl;
+					suma.values.push_back(values[i] + OtherMatrix.values[u]);
+					suma.RowX.push_back(RowX[i]);
+					suma.ColumnY.push_back(ColumnY[i]);
+					cout << suma.values[0] << suma.RowX[0] << suma.ColumnY[0];
+					checker = false;
 				}
-			}
-			else {
-				values.push_back(OtherMatrix.values[u]);
-				RowX.push_back(OtherMatrix.RowX[u]);
-				ColumnY.push_back(OtherMatrix.ColumnY[u]);
+				//cout << "exited columny, in if rowx" << endl;
 
 			}
-		
+			cout << checker << endl;
+
+			if ((u + 1) == OtherMatrix.values.size()) {
+				if (checker == true) {
+					//cout << "gotta pushback";
+					suma.values.push_back(values[i]);
+					suma.RowX.push_back(RowX[i]);
+					suma.ColumnY.push_back(ColumnY[i]);
+					//cout << "pushed values";
+				}
+			}
+
+			//cout << "exited rowx, in for U" << endl;
+
+
 		}
+		//cout << "exited for U, in for I" << endl;
+
+	} suma.getValues();
+
+	cout << "starting inverse pass"<<endl;
+	for (int i = 0; i < OtherMatrix.values.size();i++) {
+		bool checker = true;
+		for (int u = 0; u < values.size(); u++) {
+			if (OtherMatrix.RowX[i] == RowX[u]) {
+				//cout << "found in rowx" << endl;
+				if (OtherMatrix.ColumnY[i] == ColumnY[u]) {
+					//cout << "found in columny" << endl;
+					//cout << "Match Found, already summed in first pass" << endl;
+					checker = false;
+				}
+
+				//cout << "exited columny, in if rowx" << endl;
+			}
+			cout << checker << endl;
+
+			if ((u + 1) == values.size()) {
+				if (checker == true) {
+					//cout << "gotta pushback";
+					suma.values.push_back(OtherMatrix.values[i]);
+					suma.RowX.push_back(OtherMatrix.RowX[i]);
+					suma.ColumnY.push_back(OtherMatrix.ColumnY[i]);
+					//cout << "pushed values";
+				}
+			}
+
+			//cout << "exited rowx, in for U" << endl;
+
+
+		}
+		//cout << "exited for U, in for I" << endl;
+
 	}
+
+	suma.getValues();
 	return 0;
 };
 
@@ -90,7 +150,7 @@ int SparseMatrix::Resta() {
 	return 0;
 };
 
-int SparseMatrix::Multiplicacion() {
+int  SparseMatrix::Multiplicacion() {
 	return 0;
 };
 
@@ -129,3 +189,12 @@ int SparseMatrix::getValues() {
 	cout << endl;
 	return 0;
 };
+
+int SparseMatrix::getCoordinates() {
+	cout << "      coordinates in x= ";
+	for (int i = 0; i < RowX.size(); i++) {
+		cout << RowX[i] << ", ";
+	}
+	cout << endl;
+	return 0;
+}
