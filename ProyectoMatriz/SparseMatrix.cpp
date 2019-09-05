@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 void SparseMatrix::setSize() {
 	cout << "Input the x, y dimensions of the Sparse Matrix: "<<endl;
 	cin >> sizeX >> sizeY;
@@ -53,7 +54,6 @@ void SparseMatrix::setMatrix()
 };
 
 void SparseMatrix::Suma(SparseMatrix OtherMatrix) {
-
 	SparseMatrix suma;
 	if (sizeX <= OtherMatrix.sizeX) {
 		suma.sizeX = OtherMatrix.sizeX;

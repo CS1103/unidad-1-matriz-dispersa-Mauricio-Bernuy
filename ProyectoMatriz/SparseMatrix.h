@@ -6,6 +6,7 @@
 #include<string>
 using namespace std;
 
+
 class SparseMatrix {
 
 public:
@@ -14,9 +15,6 @@ public:
 	vector<int> values;
 	vector<int> RowX;
 	vector<int> ColumnY;
-
-
-	// constructor
 
 
 	// methods

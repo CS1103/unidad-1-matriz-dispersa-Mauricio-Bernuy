@@ -14,6 +14,8 @@ int main() {
 
 
 	SparseMatrix m2;
+	SparseMatrix m3;
+
 	m2.setSize();
 	m2.setMatrix();
 	m2.getSparsity();
