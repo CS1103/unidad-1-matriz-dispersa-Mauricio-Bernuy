@@ -22,14 +22,12 @@ void SparseMatrix::setMatrix()
 		int cont;
 		cout << "input value followed by x, y coordinates: " << endl;
 		cin >> v;
-
 		do {
 			cont = 0; cin >> x >> y;
 			x -= 1; y -= 1;
 			if (0 > x || x >= sizeX || 0 > y || y >= sizeY) {
 				cont++;
 				cout << "coordinates out of bounds, reinput another coordinate" << endl;
-
 
 			}
 			else {
@@ -38,8 +36,7 @@ void SparseMatrix::setMatrix()
 						if (SparseMatrix::ColumnY[u] == y) {
 							cont++;
 							cout << "coordinates already filled, reinput another coordinate" << endl;
-							u--;
-							break;
+							
 						}
 					}
 
@@ -275,7 +272,7 @@ void  SparseMatrix::Multiplicacion(SparseMatrix OtherMatrix) {
 		
 	}
 	else {
-		cout << "Matrix size incompatible"
+		cout << "Matrix size incompatible";
 	}
 
 };
