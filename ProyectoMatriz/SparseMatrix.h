@@ -25,20 +25,20 @@ public:
 
 	void setMatrix(); //Función para inputear los datos a la matriz (DONE)
 
-	int Suma(SparseMatrix OtherMatrix); //Suma dos matrices y devuelve una nueva con los datos sumados(done)
+	void Suma(SparseMatrix OtherMatrix); //Suma dos matrices y devuelve una nueva con los datos sumados (DONE)
 
-	int Resta(); //Resta dos matrices y genera una nueva con los datos restados
+	void Resta(SparseMatrix OtherMatrix); //Resta dos matrices y genera una nueva con los datos restados (DONE)
 
-	int Multiplicacion(); //Multiplica dos matrices y genera una nueva con el resultado (identificar los casos con valores indefinidos)
+	void Multiplicacion(SparseMatrix OtherMatrix); //Multiplica dos matrices y genera una nueva con el resultado (identificar los casos con valores indefinidos)
 
-	int MultiEscalar(); //Multiplica los valores de la matriz por un valor inputeado (DONE)
+	void MultiEscalar(); //Multiplica los valores de la matriz por un valor inputeado (DONE)
 
-	int Transposicion(); //Swappear las coordenadas x, y
+	void Transposicion(); //Swappear las coordenadas x, y (DONE)
 
-	int getSparsity(); // Devuelve la dispersión de la matrix 
+	float getSparsity(); // Devuelve la dispersión de la matrix  (DONE)
 	
 	int getValues(); //Devuelve los valores de la matriz como una lista (DONE)
 
-	int getCoordinates(); //Devuelve las coordenadas como una lista
+	int getCoordinates(); //Devuelve las coordenadas x,y como dos listas (DONE)
 };
 #endif

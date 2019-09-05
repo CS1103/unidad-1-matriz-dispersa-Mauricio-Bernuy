@@ -9,7 +9,6 @@ using namespace std;
 void SparseMatrix::setSize() {
 	cout << "Input the x, y dimensions of the Sparse Matrix: "<<endl;
 	cin >> sizeX >> sizeY;
-
 };
 
 void SparseMatrix::setMatrix()	
@@ -56,8 +55,8 @@ void SparseMatrix::setMatrix()
 
 };
 
+void SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 
-int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 	SparseMatrix suma;
 	if (sizeX <= OtherMatrix.sizeX) {
 		suma.sizeX = OtherMatrix.sizeX;
@@ -82,13 +81,12 @@ int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 					suma.values.push_back(values[i] + OtherMatrix.values[u]);
 					suma.RowX.push_back(RowX[i]);
 					suma.ColumnY.push_back(ColumnY[i]);
-					cout << suma.values[0] << suma.RowX[0] << suma.ColumnY[0];
 					checker = false;
 				}
 				//cout << "exited columny, in if rowx" << endl;
 
 			}
-			cout << checker << endl;
+			//cout << checker << endl;
 
 			if ((u + 1) == OtherMatrix.values.size()) {
 				if (checker == true) {
@@ -106,7 +104,7 @@ int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 		}
 		//cout << "exited for U, in for I" << endl;
 
-	} suma.getValues();
+	} 
 
 	cout << "starting inverse pass"<<endl;
 	for (int i = 0; i < OtherMatrix.values.size();i++) {
@@ -122,7 +120,7 @@ int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 
 				//cout << "exited columny, in if rowx" << endl;
 			}
-			cout << checker << endl;
+			//cout << checker << endl;
 
 			if ((u + 1) == values.size()) {
 				if (checker == true) {
@@ -142,27 +140,112 @@ int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 
 	}
 
+	cout << "Sum Sucessful. Created SparseMatrix suma"<<endl;
 	suma.getValues();
-	return 0;
+	suma.getCoordinates();
+	
 };
 
-int SparseMatrix::Resta() {
-	return 0;
+void SparseMatrix::Resta(SparseMatrix OtherMatrix) {
+
+	SparseMatrix resta;
+	if (sizeX <= OtherMatrix.sizeX) {
+		resta.sizeX = OtherMatrix.sizeX;
+	}
+	else { resta.sizeX = sizeX; };
+
+	if (resta.sizeY <= OtherMatrix.sizeY) {
+		resta.sizeY = OtherMatrix.sizeY;
+	}
+	else { resta.sizeY = sizeY; };
+
+
+	cout << "starting first pass" << endl;
+	for (int i = 0; i < values.size(); i++) {
+		bool checker = true;
+		for (int u = 0; u < OtherMatrix.values.size(); u++) {
+			if (RowX[i] == OtherMatrix.RowX[u]) {
+				//cout << "found in rowx" << endl;
+				if (ColumnY[i] == OtherMatrix.ColumnY[u]) {
+					//cout << "found in columny" << endl;
+					//cout << "Match Found" << endl;
+					resta.values.push_back(values[i] - OtherMatrix.values[u]);
+					resta.RowX.push_back(RowX[i]);
+					resta.ColumnY.push_back(ColumnY[i]);
+					checker = false;
+				}
+				//cout << "exited columny, in if rowx" << endl;
+
+			}
+
+			if ((u + 1) == OtherMatrix.values.size()) {
+				if (checker == true) {
+					//cout << "gotta pushback";
+					resta.values.push_back(values[i]);
+					resta.RowX.push_back(RowX[i]);
+					resta.ColumnY.push_back(ColumnY[i]);
+					//cout << "pushed values";
+				}
+			}
+
+			//cout << "exited rowx, in for U" << endl;
+
+
+		}
+		//cout << "exited for U, in for I" << endl;
+
+	}
+
+	cout << "starting inverse pass" << endl;
+	for (int i = 0; i < OtherMatrix.values.size();i++) {
+		bool checker = true;
+		for (int u = 0; u < values.size(); u++) {
+			if (OtherMatrix.RowX[i] == RowX[u]) {
+				//cout << "found in rowx" << endl;
+				if (OtherMatrix.ColumnY[i] == ColumnY[u]) {
+					//cout << "found in columny" << endl;
+					//cout << "Match Found, already substracted in first pass" << endl;
+					checker = false;
+				}
+
+				//cout << "exited columny, in if rowx" << endl;
+			}
+
+			if ((u + 1) == values.size()) {
+				if (checker == true) {
+					//cout << "gotta pushback";
+					resta.values.push_back(-(OtherMatrix.values[i]));
+					resta.RowX.push_back(OtherMatrix.RowX[i]);
+					resta.ColumnY.push_back(OtherMatrix.ColumnY[i]);
+					//cout << "pushed values";
+				}
+			}
+
+			//cout << "exited rowx, in for U" << endl;
+
+
+		}
+		//cout << "exited for U, in for I" << endl;
+
+	}
+
+	cout << "Substraction Sucessful. Created SparseMatrix resta"<<endl;
+	resta.getValues();
+	resta.getCoordinates();
 };
 
-int  SparseMatrix::Multiplicacion() {
-	return 0;
+void  SparseMatrix::Multiplicacion(SparseMatrix OtherMatrix) {
+
 };
 
-int SparseMatrix::MultiEscalar() {
+void SparseMatrix::MultiEscalar() {
 
 	int Scalar;
-	cout << "Input scalar to multiply vector: ";
+	cout << "Input scalar to multiply matrix: ";
 	cin >> Scalar;
 
 	if (Scalar == 0) {
 		cout << "Multiplying by 0 erases the Sparse Matrix, the operation will not proceed"<<endl;
-		return 0;
 	}
 
 	else {
@@ -173,12 +256,19 @@ int SparseMatrix::MultiEscalar() {
 	}
 };
 
-int SparseMatrix::Transposicion() {
-	return 0;
+void SparseMatrix::Transposicion() {
+	
+	RowX.swap(ColumnY);
+	cout << "values sucessfully inverted" << endl;
+	getValues();
+	getCoordinates();
 };
 
-int SparseMatrix::getSparsity() {
-	return 0;
+float SparseMatrix::getSparsity() {
+	float sparsity=0;
+	sparsity = float ((sizeX * sizeY) - values.size()) / (sizeX * sizeY);
+	cout << "Matrix has a sparsity of: "<<sparsity<<endl;
+	return sparsity;
 };
 
 int SparseMatrix::getValues() {
@@ -191,9 +281,14 @@ int SparseMatrix::getValues() {
 };
 
 int SparseMatrix::getCoordinates() {
-	cout << "      coordinates in x= ";
+	cout << "       coordinates in x= ";
 	for (int i = 0; i < RowX.size(); i++) {
-		cout << RowX[i] << ", ";
+		cout << RowX[i]+1 << ", ";
+	}
+	cout << endl;
+	cout << "       coordinates in y= ";
+	for (int i = 0; i < ColumnY.size(); i++) {
+		cout << ColumnY[i]+1<< ", ";
 	}
 	cout << endl;
 	return 0;
