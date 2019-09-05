@@ -26,7 +26,7 @@ void SparseMatrix::setMatrix()
 
 		do {
 			cont = 0; cin >> x >> y;
-
+			x -= 1; y -= 1;
 			if (0 > x || x > sizeX || 0 > y || y > sizeY) {
 				cont++;
 				cout << "coordinates out of bounds, reinput another coordinate" << endl;
@@ -65,16 +65,13 @@ int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 		sizeY = OtherMatrix.sizeY;
 	}
 
-	for (int i = 0; i < RowX.size(); i++) {
+	for (int i = 0; i < values.size(); i++) {
 		for (int u = 0; u < OtherMatrix.values.size(); u++) {
 			if (RowX[i] == OtherMatrix.RowX[u]) {
 				if (ColumnY[i] == OtherMatrix.ColumnY[u]) {
 					cout << "Match Found" << endl;
-					values[i] = +OtherMatrix.values[u];
+					values[i] += OtherMatrix.values[u];
 					cout << values[i];
-				}
-				else {
-					break;
 				}
 			}
 			else {
@@ -88,7 +85,6 @@ int SparseMatrix::Suma(SparseMatrix OtherMatrix) {
 	}
 	return 0;
 };
-
 
 int SparseMatrix::Resta() {
 	return 0;
